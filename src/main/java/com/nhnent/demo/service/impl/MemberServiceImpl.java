@@ -10,15 +10,23 @@ import com.nhnent.demo.service.NotificationService;
 
 @Service
 public class MemberServiceImpl implements MemberService {
-	
-	// TODO - 1. autowired annotation
-	@Autowired
-	private NotificationService smsService;
 
-	// TODO - 2. Qualifier annotation
-	@Autowired
-	@Qualifier("kakaoService")
-	private NotificationService kakaoService;
+	private NotificationService smsService;
+    private NotificationService kakaoService;
+
+    // TODO 1. Setter Injection
+    @Autowired
+    @Qualifier("smsService")
+    public void setSmsService(NotificationService notificationService){
+        this.smsService = notificationService;
+    }
+
+    // TODO 2. Setter Injection
+    @Autowired
+    @Qualifier("kakaoService")
+    public void setKakaoService(NotificationService notificationService){
+        this.kakaoService = notificationService;
+    }
 
 	@Override
 	public boolean subscribe(Member member) {
