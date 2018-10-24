@@ -1,5 +1,8 @@
 package com.nhnent.demo.service.impl;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -19,6 +22,16 @@ public class MemberServiceImpl implements MemberService {
                              @Qualifier("kakaoService") NotificationService kakaoService) {
         this.smsService = smsService;
         this.kakaoService = kakaoService;
+    }
+    
+    @PostConstruct
+    public void init() {
+        System.out.println("--------------------------- init    --------------------------");
+    }
+
+    @PreDestroy
+    public void destroy() {
+        System.out.println("--------------------------- destroy --------------------------");
     }
 
 	@Override
