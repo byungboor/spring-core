@@ -1,7 +1,12 @@
 package com.nhnent.demo.service.impl;
 
+import org.springframework.stereotype.Service;
+
 import com.nhnent.demo.service.NotificationService;
 
+//TODO 3. 아래 클래스를 Bean으로 만들때, KakaoServiceImpl과 구분하기 위해서 Bean 의 이름을 지정해야 합니다.
+//TODO 3.下のクラスをBeanとして作成するときに、KakaoServiceImplと区別するためにBeanの名前を指定する必要があります。
+@Service("smsService")
 public class SmsServiceImpl implements NotificationService {
 
 	public boolean sendNotification(String phoneNumber, String message) {
