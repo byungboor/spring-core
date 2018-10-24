@@ -4,9 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.nhnent.demo.service.NotificationService;
 
-// TODO 2. 아래 클래스를 Bean으로 만들때, SmsServiceImpl과 구분하기 위해서 Bean 의 이름을 지정해야 합니다.
-// TODO2.下のクラスをBeanとして作成するときに、SmsServiceImplと区別するためにBeanの名前を指定する必要があります。
-@Service(value = "???")
+@Service(value = "kakaoService")
 public class KakaoServiceImpl implements NotificationService {
 
 	@Override
