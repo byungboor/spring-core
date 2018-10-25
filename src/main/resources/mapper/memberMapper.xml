@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberDao">
+    <select id="selectMemberExist" resultMap="memberResultMap">
+        SELECT MNAME,EMAIL FROM MEMBERS WHERE EMAIL=#{email} AND PWD=#{password}
+    </select>
+
+    <insert id="insertMember" parameterType="member">
+        INSERT INTO MEMBERS
+        (EMAIL, PWD, MNAME, CRE_DATE, MOD_DATE)
+        VALUES
+        (#{email}, #{password}, #{name}, NOW(), NOW())
+    </insert>
+
+    <select id="selectMemberList" resultMap="memberResultMap">
+        SELECT MNO,MNAME,EMAIL,CRE_DATE FROM MEMBERS ORDER BY MNO ASC
+    </select>
+
+    <select id="selectMember" parameterType="int" resultMap="memberResultMap">
+        SELECT MNO,MNAME,EMAIL,CRE_DATE FROM MEMBERS WHERE MNO = #{id}
+    </select>
+
+    <update id="updateMember" parameterType="member">
+        UPDATE MEMBERS SET EMAIL = #{email}, MNAME = #{name}, MOD_DATE = now() WHERE MNO = #{no}
+    </update>
+
+    <delete id="deleteMember">
+        DELETE FROM MEMBERS WHERE MNO = #{id}
+    </delete>
+
+    <resultMap type="member" id="memberResultMap">
+        <id property="no" column="MNO" />
+        <result property="name" column="MNAME" />
+        <result property="email" column="EMAIL" />
+        <result property="password" column="PWD" />
+        <result property="createdDate" column="CRE_DATE" />
+        <result property="modifiedDate" column="MOD_DATE" />
+    </resultMap>
+</mapper>

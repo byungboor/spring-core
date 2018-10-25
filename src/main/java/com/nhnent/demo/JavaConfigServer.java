@@ -13,11 +13,11 @@ public class JavaConfigServer {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
 				RootApplicationConfig.class);
 
-		Member member = new Member("김병부", "01099499102");
 		MemberService memberService = context.getBean(MemberService.class);
-		memberService.subscribe(member);
 
-		Thread.sleep(1000L);
+		Member member = memberService.getMember();
+		System.out.println(member.getEmail());
+
 		context.close();
 	}
 

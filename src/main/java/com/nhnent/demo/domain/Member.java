@@ -1,19 +1,75 @@
 package com.nhnent.demo.domain;
 
-public class Member {
-	private String name;
-    private String phoneNumber;
+import java.util.Date;
 
-    public Member(String name, String phoneNumber) {
-        this.name = name;
-        this.phoneNumber = phoneNumber;
+public class Member {
+    protected int 		no;
+    protected String 	name;
+    protected String 	email;
+    protected String 	password;
+    protected Date		createdDate;
+    protected Date		modifiedDate;
+
+
+    public int getNo() {
+        return no;
+    }
+    public Member setNo(int no) {
+        this.no = no;
+        return this;
     }
 
     public String getName() {
-        return this.name;
+        return name;
+    }
+    public Member setName(String name) {
+        this.name = name;
+        return this;
     }
 
-    public String getPhoneNumber() {
-        return this.phoneNumber;
+    public String getEmail() {
+        return email;
+    }
+    public Member setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    public Member setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+    public Member setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+        return this;
+    }
+
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+    public Member setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+        return this;
+    }
+
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Member{");
+        sb.append("no=").append(no);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", email='").append(email).append('\'');
+        sb.append(", password='").append(password).append('\'');
+        sb.append(", createdDate=").append(createdDate);
+        sb.append(", modifiedDate=").append(modifiedDate);
+        sb.append('}');
+        return sb.toString();
     }
 }

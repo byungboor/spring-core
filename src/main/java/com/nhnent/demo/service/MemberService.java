@@ -4,6 +4,5 @@ import com.nhnent.demo.domain.Member;
 
 public interface MemberService {
 
-	boolean subscribe(Member member);
-
+	Member getMember();
 }
