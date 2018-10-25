@@ -29,7 +29,12 @@ public class MemberServiceImpl implements MemberService {
     private PlatformTransactionManager transactionManager;
 
     public Member createMember(String email, String password, String name) {
-        Member member = new Member();
+    	
+    	Member member = memberDao.selectByEmail(email);
+    	if (member != null)
+    		return member;
+ 
+    	member = new Member();
         member.setEmail(email);
         member.setPassword(password);
         member.setName(name);
