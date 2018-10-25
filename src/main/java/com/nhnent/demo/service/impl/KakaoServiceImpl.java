@@ -1,10 +1,14 @@
 package com.nhnent.demo.service.impl;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import com.nhnent.demo.service.NotificationService;
 
-@Service(value = "kakaoService")
+//TODO 1. 
+//@Service(value = "kakaoService")
+@Profile("dev")
+@Service
 public class KakaoServiceImpl implements NotificationService {
 
 	@Override

@@ -1,10 +1,15 @@
 package com.nhnent.demo.service.impl;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import com.nhnent.demo.service.NotificationService;
 
-@Service("smsService")
+
+//TODO 2. 
+//@Service("smsService")
+@Profile("!dev")
+@Service
 public class SmsServiceImpl implements NotificationService {
 
 	public boolean sendNotification(String phoneNumber, String message) {
