@@ -24,7 +24,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 @EnableAspectJAutoProxy
 @ComponentScan(basePackages = {
-		"com.nhnent.demo.aop.**",
+		"com.nhnent.demo.aop",
 		"com.nhnent.demo.dao.**", 
 		"com.nhnent.demo.service.**" 
 })

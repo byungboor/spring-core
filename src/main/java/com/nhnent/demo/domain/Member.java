@@ -59,7 +59,6 @@ public class Member {
         return this;
     }
 
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Member{");

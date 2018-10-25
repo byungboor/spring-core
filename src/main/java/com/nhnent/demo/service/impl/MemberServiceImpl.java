@@ -56,6 +56,10 @@ public class MemberServiceImpl implements MemberService {
         if (member == null) {
             return null;
         }
+        
+        System.out.println("--------------------------------------------");
+        System.out.println("member : " +member.toString());
+        System.out.println("--------------------------------------------");
 
         return memberDao.selectOne(member.getNo());
     }

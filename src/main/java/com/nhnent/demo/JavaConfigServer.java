@@ -13,7 +13,8 @@ public class JavaConfigServer {
 	public static void main(String args[]) throws Exception {
 
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(RootApplicationConfig.class);
-
+        
+        
         MemberService memberService = context.getBean(MemberService.class);
 
         Member member1 = memberService.createMember("dongmyo@nhnent.com", "123123", "신동민");
@@ -35,6 +36,8 @@ public class JavaConfigServer {
         System.out.println(members.size());
         members.stream().forEach(System.out::println);
         System.out.println("-----------------------------------------------");
+        
+        memberService.getMember("dongmyo@nhnent.com", "123123");
 
         context.close();
 	}
