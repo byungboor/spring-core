@@ -16,12 +16,15 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
+@EnableAspectJAutoProxy
 @ComponentScan(basePackages = {
+		"com.nhnent.demo.aop.**",
 		"com.nhnent.demo.dao.**", 
 		"com.nhnent.demo.service.**" 
 })
