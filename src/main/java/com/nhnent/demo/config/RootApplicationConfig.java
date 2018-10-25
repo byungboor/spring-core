@@ -21,7 +21,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
-@ComponentScan(basePackages = { 
+@ComponentScan(basePackages = {
 		"com.nhnent.demo.dao.**", 
 		"com.nhnent.demo.service.**" 
 })

@@ -13,11 +13,15 @@
     </insert>
 
     <select id="selectMemberList" resultMap="memberResultMap">
-        SELECT MNO,MNAME,EMAIL,CRE_DATE FROM MEMBERS ORDER BY MNO ASC
+        SELECT MNO,MNAME,EMAIL,CRE_DATE, MOD_DATE FROM MEMBERS ORDER BY MNO ASC
     </select>
 
     <select id="selectMember" parameterType="int" resultMap="memberResultMap">
-        SELECT MNO,MNAME,EMAIL,CRE_DATE FROM MEMBERS WHERE MNO = #{id}
+        SELECT MNO,MNAME,EMAIL,CRE_DATE, MOD_DATE FROM MEMBERS WHERE MNO = #{id}
+    </select>
+
+    <select id="selectMemberByEmail" parameterType="String" resultMap="memberResultMap">
+        SELECT MNO,MNAME,EMAIL,CRE_DATE, MOD_DATE FROM MEMBERS WHERE email = #{email}
     </select>
 
     <update id="updateMember" parameterType="member">
