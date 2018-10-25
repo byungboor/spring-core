@@ -15,6 +15,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import com.nhnent.demo.dao.MemberDao;
 import com.nhnent.demo.domain.Member;
 import com.nhnent.demo.service.MemberService;
+import com.nhnent.demo.stereotype.CustomLogger;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -51,6 +52,7 @@ public class MemberServiceImpl implements MemberService {
         return member;
     }
 
+    @CustomLogger
     public Member getMember(String email, String password) {
         Member member = memberDao.exist(email, password);
         if (member == null) {
