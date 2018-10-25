@@ -5,8 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.nhnent.demo.service.NotificationService;
 
-//TODO 1. 
-//@Service(value = "kakaoService")
 @Profile("dev")
 @Service
 public class KakaoServiceImpl implements NotificationService {

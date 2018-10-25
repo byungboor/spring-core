@@ -5,9 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.nhnent.demo.service.NotificationService;
 
-
-//TODO 2. 
-//@Service("smsService")
 @Profile("!dev")
 @Service
 public class SmsServiceImpl implements NotificationService {

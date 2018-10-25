@@ -1,6 +1,8 @@
 package com.nhnent.demo;
 
 
+import java.util.Arrays;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.nhnent.demo.config.RootApplicationConfig;
@@ -15,6 +17,13 @@ public class JavaConfigServer {
         NotificationService notificationService = context.getBean(NotificationService.class);
         notificationService.sendNotification("01099499102", "Profiled Test");
 
+        String[] profiles = context.getEnvironment().getActiveProfiles();
+
+        System.out.println("-----------------------------------");
+        Arrays.stream(profiles).forEach(System.out::println);
+        System.out.println("-----------------------------------");
+
+        
         context.close();
 	}
 
