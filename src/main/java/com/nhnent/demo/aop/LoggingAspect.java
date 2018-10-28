@@ -13,7 +13,7 @@ import com.nhnent.demo.domain.Member;
 @Component
 public class LoggingAspect {
 
-    @Before("execution(* getAllMembers(..))")
+    @Before("execution(* getMember(..))")
     public void before(JoinPoint joinPoint) {
         System.out.println("Start Method! >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ");
         Signature signature = joinPoint.getSignature();
