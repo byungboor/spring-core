@@ -52,6 +52,7 @@ public class MemberServiceImpl implements MemberService {
         return member;
     }
 
+    // TODO 1.
     @CustomLogger
     public Member getMember(String email, String password) {
         Member member = memberDao.exist(email, password);

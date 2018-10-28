@@ -14,10 +14,12 @@ import com.nhnent.demo.domain.Member;
 @Component
 public class LoggingAspect {
 
+	// TODO 3.
 	@Pointcut("@annotation(com.nhnent.demo.stereotype.CustomLogger)")
     public void loggingPointCut() {
     }
 
+	// TODO 4.
     //    @Around(value = "@annotation(com.nhnent.benjamin.stereotype.CustomLogger)")
     @Around("loggingPointCut()")
     public Member around(ProceedingJoinPoint pjp) throws Throwable {
