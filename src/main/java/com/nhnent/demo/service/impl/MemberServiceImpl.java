@@ -24,11 +24,13 @@ public class MemberServiceImpl implements MemberService {
         this.kakaoService = kakaoService;
     }
     
+    // TODO - PostConstruct
     @PostConstruct
     public void init() {
         System.out.println("--------------------------- init    --------------------------");
     }
 
+    // TODO - PreDestory
     @PreDestroy
     public void destroy() {
         System.out.println("--------------------------- destroy --------------------------");
