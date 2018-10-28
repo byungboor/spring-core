@@ -34,6 +34,8 @@ public class RootApplicationConfig {
 		JDBC_PROPERTY_LOCATION_MAP.put("mysql", "classpath:properties/mysql.jdbc.properties");
 	}
 
+	// TODO 1. Bean 설정에 따라서 H2 디비와 MySQL 디비를 선택할 수 있는 구조입니다.
+	// TODO 1. Beanの設定に応じてH2ディビとMySQLディビを選ぶことができる仕組みです。
 	@Bean
 	public String dbms() {
 		return "h2";
@@ -51,6 +53,8 @@ public class RootApplicationConfig {
 		return placeholderConfigurer;
 	}
 
+	// TODO 2. JDBC 의 Connection 객체를 표현하는 클래스입니다.
+	// TODO 2. JDBCのConnectionオブジェクトを表現するクラスです。
 	@Bean
 	public DataSource dataSource(@Value("${jdbc.driverClassName}") String driverClassName,
 			@Value("${jdbc.url}") String url, @Value("${jdbc.username}") String username,
@@ -64,6 +68,8 @@ public class RootApplicationConfig {
 		return dataSource;
 	}
 
+	// TODO 3. TransactionManager 선언.
+	// TODO 3. TransactionManager宣言
 	@Bean
     public PlatformTransactionManager transactionManager(DataSource dataSource) {
 		DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
@@ -72,6 +78,7 @@ public class RootApplicationConfig {
 		return transactionManager;
 	}
 
+	// TODO 4. MyBatis
 	@Bean(name = "sqlSessionFactory")
 	public SqlSessionFactoryBean sqlSessionFactory(org.springframework.context.ApplicationContext applicationContext,
 			DataSource dataSource) throws IOException {
