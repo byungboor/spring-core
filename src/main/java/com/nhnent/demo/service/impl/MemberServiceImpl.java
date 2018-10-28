@@ -14,6 +14,7 @@ public class MemberServiceImpl implements MemberService {
 	private NotificationService smsService;
     private NotificationService kakaoService;
 
+    //  TODO - Constructor Injection 
     @Autowired
     public MemberServiceImpl(NotificationService smsService,
                              @Qualifier("kakaoService") NotificationService kakaoService) {
