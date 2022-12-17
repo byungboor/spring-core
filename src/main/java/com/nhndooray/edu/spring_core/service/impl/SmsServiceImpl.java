@@ -1,7 +1,9 @@
 package com.nhndooray.edu.spring_core.service.impl;
 
 import com.nhndooray.edu.spring_core.service.NotificationService;
+import org.springframework.stereotype.Component;
 
+@Component("smsService")
 public class SmsServiceImpl implements NotificationService {
     @Override
     public boolean sendNotification(String phoneNumber, String message) {
