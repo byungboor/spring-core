@@ -16,7 +16,6 @@ public class MemberConfig {
     @Autowired
     private NotificationService smsService;
 
-    // TODO-03 : init, destroy 메서드 설정
     @Bean("memberService")
     public MemberService memberService() {
         return new MemberServiceImpl(smsService, config.kakaoService());

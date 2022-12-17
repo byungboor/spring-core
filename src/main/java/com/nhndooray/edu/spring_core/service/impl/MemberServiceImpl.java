@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 
 public class MemberServiceImpl implements MemberService {
 
@@ -35,6 +38,15 @@ public class MemberServiceImpl implements MemberService {
         return true;
     }
 
-    // TODO-02 : init, destroy 메서드 구현
+    // TODO-02 : @PostConstruct & PreDestroy
+    @PostConstruct
+    public void init(){
+        System.out.println("--------------init ---------------------");
+    }
+
+    @PreDestroy
+    public void destroy(){
+        System.out.println("-----------------destroy-----------------");
+    }
 
 }
