@@ -14,7 +14,6 @@ public class MemberServiceImpl implements MemberService {
     private final NotificationService smsService;
     private final NotificationService kakaoService;
 
-    // TODO -01 : 관례
     public MemberServiceImpl(NotificationService smsService,
                              NotificationService kakaoService) {
         this.smsService = smsService;
@@ -35,5 +34,7 @@ public class MemberServiceImpl implements MemberService {
 
         return true;
     }
+
+    // TODO-02 : init, destroy 메서드 구현
 
 }

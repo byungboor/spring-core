@@ -7,7 +7,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-// TODO-05
 @ComponentScan(basePackages = "com.nhndooray.edu.spring_core")
 public class Config {
 

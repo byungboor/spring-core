@@ -7,6 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class Application {
 
+    // TODO-04 실행
     public static void main(String[] args) {
         try (AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(Config.class)) {
             MemberService memberService = applicationContext.getBean(MemberService.class);
