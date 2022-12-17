@@ -2,10 +2,12 @@ package com.nhndooray.edu.spring_core.service.impl;
 
 import com.nhndooray.edu.spring_core.service.NotificationService;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service("kakaoService")
+@Profile("dev")
+@Service
 public class KakaoServiceImpl implements NotificationService {
     @Override
     public boolean sendNotification(String phoneNumber, String message) {
@@ -13,5 +15,9 @@ public class KakaoServiceImpl implements NotificationService {
         System.out.println("Success to send message");
 
         return true;
+    }
+
+    public String getType() {
+        return "Kakao";
     }
 }

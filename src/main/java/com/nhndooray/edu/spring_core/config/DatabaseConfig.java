@@ -7,10 +7,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 
-// TODO : #3 데이터베이스 설정.
 @Configuration
 public class DatabaseConfig {
-    // TODO : #4 DataSource 설정.
+
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
@@ -42,10 +41,9 @@ public class DatabaseConfig {
         return dataSource;
     }
 
-    // TODO : #5 실습 - DataSource 를 이용해서 JdbcTemplate 빈을 생성하세요.
     @Bean
     public JdbcTemplate jdbcTemplate() {
-        return null;
+        return new JdbcTemplate(dataSource());
     }
 
 }
