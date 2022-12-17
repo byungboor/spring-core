@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("kakaoService")
 public class KakaoServiceImpl implements NotificationService {
     @Override
     public boolean sendNotification(String phoneNumber, String message) {
