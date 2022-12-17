@@ -10,9 +10,4 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackages = "com.nhndooray.edu.spring_core")
 public class Config {
 
-    @Bean
-    public NotificationService kakaoService() {
-        return new KakaoServiceImpl();
-    }
-
 }

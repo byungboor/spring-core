@@ -11,16 +11,17 @@ import org.springframework.util.StringUtils;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-
+@Service
 public class MemberServiceImpl implements MemberService {
 
-    private final NotificationService smsService;
-    private final NotificationService kakaoService;
+    private final NotificationService notificationService;
 
-    public MemberServiceImpl(NotificationService smsService,
-                             NotificationService kakaoService) {
-        this.smsService = smsService;
-        this.kakaoService = kakaoService;
+    // TODO - 01
+    // NotificationService 주입 대상 스프링 빈은 2개.
+    // Caused by: org.springframework.beans.factory.NoUniqueBeanDefinitionException:
+    // --> @Primary 사용
+    public MemberServiceImpl(NotificationService notificationService) {
+        this.notificationService = notificationService;
     }
 
     @Override
@@ -29,24 +30,9 @@ public class MemberServiceImpl implements MemberService {
             throw new IllegalArgumentException("Member is null");
 
         if (StringUtils.hasLength(member.getPhoneNumber()))
-            smsService.sendNotification(member.getPhoneNumber(), "Success to Subscribe");
-
-        if (StringUtils.hasLength(member.getPhoneNumber()))
-            kakaoService.sendNotification(member.getPhoneNumber(), "Success to Subscribe");
-
+            notificationService.sendNotification(member.getPhoneNumber(), "Success to Subscribe");
 
         return true;
-    }
-
-    // TODO-02 : @PostConstruct & PreDestroy
-    @PostConstruct
-    public void init(){
-        System.out.println("--------------init ---------------------");
-    }
-
-    @PreDestroy
-    public void destroy(){
-        System.out.println("-----------------destroy-----------------");
     }
 
 }
