@@ -12,14 +12,21 @@ import org.springframework.util.StringUtils;
 @Service
 public class MemberServiceImpl implements MemberService {
 
+    private NotificationService smsService;
+    private NotificationService kakaoService;
+
     // TODO-01
     @Autowired
-    private NotificationService smsService;
+    public void setSmsService(NotificationService smsService) {
+        this.smsService = smsService;
+    }
 
     // TODO-02
     @Autowired
     @Qualifier("kakaoService")
-    private NotificationService kakaoService;
+    public void setKakaoService(NotificationService kakaoService) {
+        this.kakaoService = kakaoService;
+    }
 
     @Override
     public boolean subscribe(Member member) {
