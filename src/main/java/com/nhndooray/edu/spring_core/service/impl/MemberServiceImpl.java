@@ -12,19 +12,13 @@ import org.springframework.util.StringUtils;
 @Service
 public class MemberServiceImpl implements MemberService {
 
-    private NotificationService smsService;
-    private NotificationService kakaoService;
+    private final NotificationService smsService;
+    private final NotificationService kakaoService;
 
-    // TODO-01
-    @Autowired
-    public void setSmsService(NotificationService smsService) {
+    // TODO -01 : 관례
+    public MemberServiceImpl(NotificationService smsService,
+                             NotificationService kakaoService) {
         this.smsService = smsService;
-    }
-
-    // TODO-02
-    @Autowired
-    @Qualifier("kakaoService")
-    public void setKakaoService(NotificationService kakaoService) {
         this.kakaoService = kakaoService;
     }
 
