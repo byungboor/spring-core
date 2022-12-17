@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 
-@Service
 public class MemberServiceImpl implements MemberService {
 
     private final NotificationService smsService;
