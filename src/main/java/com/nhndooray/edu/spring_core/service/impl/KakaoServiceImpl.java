@@ -3,7 +3,6 @@ package com.nhndooray.edu.spring_core.service.impl;
 import com.nhndooray.edu.spring_core.service.NotificationService;
 import org.springframework.stereotype.Component;
 
-@Component("kakaoService")
 public class KakaoServiceImpl implements NotificationService {
     @Override
     public boolean sendNotification(String phoneNumber, String message) {
@@ -12,5 +11,4 @@ public class KakaoServiceImpl implements NotificationService {
 
         return true;
     }
-
 }
