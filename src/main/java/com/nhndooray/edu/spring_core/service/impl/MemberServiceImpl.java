@@ -21,8 +21,6 @@ public class MemberServiceImpl implements MemberService {
 
     private final MemberDao memberDao;
 
-    // TODO : #2 transaction manager 빈 주입.
-    // TODO : #2 inject the transaction manager bean.
     private final PlatformTransactionManager transactionManager;
 
 
@@ -67,8 +65,6 @@ public class MemberServiceImpl implements MemberService {
         Member newMember1 = new Member(member1.getName(), member2.getPhoneNumber());
         Member newMember2 = new Member(member2.getName(), member1.getPhoneNumber());
 
-        // TODO : #3 TransactionDefinition, TransactionStatus 를 사용하여 transaction commit, rollback 적용.
-        // TODO : #3 apply transaction commit/rollback using TransactionDefinition and TransactionStatus.
         TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
 
         try {
