@@ -1,7 +1,9 @@
 package com.nhndooray.edu.spring_core.service.impl;
 
+import com.nhndooray.edu.spring_core.assembler.MemberAssembler;
 import com.nhndooray.edu.spring_core.domain.Member;
-import com.nhndooray.edu.spring_core.repository.MemberDao;
+import com.nhndooray.edu.spring_core.entity.MemberEntity;
+import com.nhndooray.edu.spring_core.repository.MemberRepository;
 import com.nhndooray.edu.spring_core.repository.NotiLogDao;
 import com.nhndooray.edu.spring_core.service.MemberService;
 import com.nhndooray.edu.spring_core.service.NotificationService;
@@ -9,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
-import org.springframework.util.StringUtils;
 
 import java.util.Objects;
 
@@ -19,18 +20,20 @@ public class MemberServiceImpl implements MemberService {
 
     private final NotiLogDao notiLogDao;
 
-    private final MemberDao memberDao;
+    // TODO : #8 use JPA (use MemberRepository instead of MemberDao)
+    //    private final MemberDao memberDao;
+    private final MemberRepository memberRepository;
 
     private final PlatformTransactionManager transactionManager;
 
 
     public MemberServiceImpl(NotificationService notificationService,
                              NotiLogDao notiLogDao,
-                             MemberDao memberDao,
+                             MemberRepository memberRepository,
                              PlatformTransactionManager transactionManager) {
         this.notificationService = notificationService;
         this.notiLogDao = notiLogDao;
-        this.memberDao = memberDao;
+        this.memberRepository = memberRepository;
         this.transactionManager = transactionManager;
     }
 
@@ -51,6 +54,15 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member getOrCreateMember(Member member) {
+        // TODO : #8-1
+        MemberEntity memberEntity = memberRepository.findById(member.getName()).orElse(null);
+        if (Objects.nonNull(memberEntity)) {
+            return new MemberAssembler().toDto(memberEntity);
+        } else {
+            memberRepository.save(new MemberEntity(member.getName(), member.getPhoneNumber()));
+            return member;
+        }
+        /*
         Member dbMember = memberDao.getMember(member.getName());
         if (Objects.nonNull(dbMember)) {
             return dbMember;
@@ -58,6 +70,7 @@ public class MemberServiceImpl implements MemberService {
             memberDao.insertMember(member);
             return member;
         }
+*/
     }
 
     @Override
@@ -68,8 +81,11 @@ public class MemberServiceImpl implements MemberService {
         TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
 
         try {
-            memberDao.updateMember(newMember1);
-            memberDao.updateMember(newMember2);
+            // TODO : #8-2
+            memberRepository.save(new MemberEntity(newMember1.getName(), newMember1.getPhoneNumber()));
+            memberRepository.save(new MemberEntity(newMember2.getName(), newMember2.getPhoneNumber()));
+            //            memberDao.updateMember(newMember1);
+            //            memberDao.updateMember(newMember2);
 
             transactionManager.commit(status);
         } catch (RuntimeException e) {
