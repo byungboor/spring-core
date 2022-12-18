@@ -20,8 +20,6 @@ public class MemberServiceImpl implements MemberService {
 
     private final NotiLogDao notiLogDao;
 
-    // TODO : #8 use JPA (use MemberRepository instead of MemberDao)
-    //    private final MemberDao memberDao;
     private final MemberRepository memberRepository;
 
     private final PlatformTransactionManager transactionManager;
@@ -54,7 +52,6 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member getOrCreateMember(Member member) {
-        // TODO : #8-1
         MemberEntity memberEntity = memberRepository.findById(member.getName()).orElse(null);
         if (Objects.nonNull(memberEntity)) {
             return new MemberAssembler().toDto(memberEntity);
@@ -62,15 +59,7 @@ public class MemberServiceImpl implements MemberService {
             memberRepository.save(new MemberEntity(member.getName(), member.getPhoneNumber()));
             return member;
         }
-        /*
-        Member dbMember = memberDao.getMember(member.getName());
-        if (Objects.nonNull(dbMember)) {
-            return dbMember;
-        } else {
-            memberDao.insertMember(member);
-            return member;
-        }
-*/
+
     }
 
     @Override
@@ -81,11 +70,8 @@ public class MemberServiceImpl implements MemberService {
         TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
 
         try {
-            // TODO : #8-2
             memberRepository.save(new MemberEntity(newMember1.getName(), newMember1.getPhoneNumber()));
             memberRepository.save(new MemberEntity(newMember2.getName(), newMember2.getPhoneNumber()));
-            //            memberDao.updateMember(newMember1);
-            //            memberDao.updateMember(newMember2);
 
             transactionManager.commit(status);
         } catch (RuntimeException e) {

@@ -20,7 +20,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-// TODO : #4 use spring data jpa repository.
 @EnableJpaRepositories("com.nhndooray.edu.spring_core.repository")
 @Configuration
 @PropertySource("classpath:datasource.properties")
@@ -65,17 +64,6 @@ public class DatabaseConfig {
     public JdbcTemplate jdbcTemplate() {
         return new JdbcTemplate(dataSource());
     }
-
-    // TODO : #5 JPA-related bean configuration - transaction manager, entity manager factory.
-/*
-    @Bean
-    public PlatformTransactionManager transactionManager(DataSource dataSource) {
-        DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
-        transactionManager.setDataSource(dataSource);
-
-        return transactionManager;
-    }
-*/
 
     @Bean
     public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {

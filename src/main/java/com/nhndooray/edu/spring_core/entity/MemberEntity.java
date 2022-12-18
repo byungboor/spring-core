@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-// TODO : #6 Entity class which maps MEMBER table.
 @Entity
 @Table(name = "MEMBER")
 public class MemberEntity {
