@@ -4,31 +4,27 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
+import java.io.IOException;
+import java.util.Properties;
 
 @Configuration
-// TODO : #2 instead of @PropertySource.
-//@PropertySource("classpath:datasource.properties")
 public class DatabaseConfig {
 
-    // TODO : #1 use @Value("${...}")
-    @Value("${datasource.driver-class-name}")
+    @Value("#{h2Properties['datasource.driver-class-name']}")
     private String driverClassName;
 
-    @Value("${datasource.url}")
+    @Value("#{h2Properties['datasource.url']}")
     private String url;
 
-    @Value("${datasource.username:sa}")
+    @Value("#{h2Properties['datasource.username'] ?: 'sa'}")
     private String username;
 
-    @Value("${datasource.password:}")
+    @Value("#{h2Properties['datasource.password:'] ?: ''}")
     private String password;
-
 
     @Bean
     public DataSource dataSource() {
@@ -66,13 +62,16 @@ public class DatabaseConfig {
         return new JdbcTemplate(dataSource());
     }
 
-    // TODO : #3 use PropertySourcesPlaceholderConfigurer.
-    // does it work?
+
     @Bean
-    public /*static*/ PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
-        PropertySourcesPlaceholderConfigurer placeholderConfigurer = new PropertySourcesPlaceholderConfigurer();
-        placeholderConfigurer.setLocation(new ClassPathResource("datasource.properties"));
-        return placeholderConfigurer;
+    public Properties mysqlProperties() throws IOException {
+        return PropertiesLoaderUtils.loadAllProperties("datasource/mysql.properties");
+    }
+
+    // TODO 01
+    @Bean
+    public Properties h2Properties() throws IOException {
+        return PropertiesLoaderUtils.loadAllProperties("datasource/h2.properties");
     }
 
 }
