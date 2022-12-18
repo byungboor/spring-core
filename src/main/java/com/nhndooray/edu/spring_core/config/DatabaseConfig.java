@@ -1,39 +1,37 @@
 package com.nhndooray.edu.spring_core.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.Properties;
 
 @Configuration
+@PropertySource("classpath:datasource.properties")
 public class DatabaseConfig {
 
-    @Value("#{h2Properties['datasource.driver-class-name']}")
-    private String driverClassName;
+    @Autowired
+    private Environment env;
 
-    @Value("#{h2Properties['datasource.url']}")
-    private String url;
-
-    @Value("#{h2Properties['datasource.username'] ?: 'sa'}")
-    private String username;
-
-    @Value("#{h2Properties['datasource.password:'] ?: ''}")
-    private String password;
 
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
 
-        dataSource.setDriverClassName(driverClassName);
-        dataSource.setUrl(url);
-        dataSource.setUsername(username);
-        dataSource.setPassword(password);
+        dataSource.setDriverClassName(env.getProperty("datasource.driver-class-name"));
+        dataSource.setUrl(env.getProperty("datasource.url"));
+        dataSource.setUsername(env.getProperty("datasource.username"));
+        dataSource.setPassword(env.getProperty("datasource.password", ""));
 
         dataSource.setInitialSize(10);
         dataSource.setMaxTotal(10);
@@ -63,14 +61,14 @@ public class DatabaseConfig {
     }
 
 
+    // TODO : #1 transaction manager 빈 등록.
+    // TODO : #1 register transaction manager bean.
     @Bean
-    public Properties mysqlProperties() throws IOException {
-        return PropertiesLoaderUtils.loadAllProperties("datasource/mysql.properties");
-    }
+    public PlatformTransactionManager transactionManager(DataSource dataSource) {
+        DataSourceTransactionManager transactionManager = new DataSourceTransactionManager();
+        transactionManager.setDataSource(dataSource);
 
-    @Bean
-    public Properties h2Properties() throws IOException {
-        return PropertiesLoaderUtils.loadAllProperties("datasource/h2.properties");
+        return transactionManager;
     }
 
 }
