@@ -9,7 +9,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
 
-// TODO : #5 use @AspectJ.
 @EnableAspectJAutoProxy
 @Configuration
 @Import(DatabaseConfig.class)

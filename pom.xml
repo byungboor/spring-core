@@ -75,13 +75,11 @@
             <version>1.4.197</version>
         </dependency>
 
-        <!-- TODO : #1 spring-aop -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
         </dependency>
 
-        <!-- TODO : #2 aspectj -->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
@@ -94,7 +92,6 @@
             <version>1.9.2</version>
         </dependency>
 
-        <!-- TODO : #3 logback -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>

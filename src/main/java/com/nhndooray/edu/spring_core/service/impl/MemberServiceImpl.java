@@ -43,8 +43,11 @@ public class MemberServiceImpl implements MemberService {
 
         if (member.getPhoneNumber() != null && !member.getPhoneNumber().isEmpty()) {
             notificationService.sendNotification(member.getPhoneNumber(), "Success to Subscribe");
+
+            // TODO : #1 다음 insertLog 메서드를 실행한 결과 값 logId를 System.out.println() 대신 AOP 로 로그를 남겨주세요.
             int logId = notiLogDao.insertLog(member, notificationService.getType());
-            System.out.println(notiLogDao.getLog(logId));
+            // TODO : #1-1 다음 코드의 내용을 Aspect로 로직을 뜯어내야 합니다.
+            // System.out.println(notiLogDao.getLog(logId));
         }
 
         return true;
