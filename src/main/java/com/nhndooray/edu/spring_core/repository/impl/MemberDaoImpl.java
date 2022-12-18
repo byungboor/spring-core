@@ -8,7 +8,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-// TODO : #4 JdbcTemplate을 이용하여 MemberDao 구현체 생성.
 @Repository
 public class MemberDaoImpl implements MemberDao {
 
@@ -36,10 +35,9 @@ public class MemberDaoImpl implements MemberDao {
     @Override
     public void updateMember(Member member) {
 
-        // TODO : #8 만약 여기서 exception이 발생하면?
-//        if ("global".equals(member.getName())) {
-//            throw new RuntimeException("error occurred!!!");
-//        }
+        if ("global".equals(member.getName())) {
+            throw new RuntimeException("error occurred!!!");
+        }
 
         jdbcTemplate.update("UPDATE MEMBER SET PHONE_NUMBER = ? WHERE NAME = ?",
                             member.getPhoneNumber(),

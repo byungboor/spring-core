@@ -1,6 +1,5 @@
 package com.nhndooray.edu.spring_core.domain;
 
-// TODO : #2 Member 도메인 모델.
 public class Member {
     private String name;
     private String phoneNumber;
