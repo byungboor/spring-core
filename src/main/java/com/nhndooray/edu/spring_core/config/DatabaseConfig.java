@@ -68,7 +68,6 @@ public class DatabaseConfig {
         return PropertiesLoaderUtils.loadAllProperties("datasource/mysql.properties");
     }
 
-    // TODO 01
     @Bean
     public Properties h2Properties() throws IOException {
         return PropertiesLoaderUtils.loadAllProperties("datasource/h2.properties");

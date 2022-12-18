@@ -67,7 +67,6 @@
             <version>1.4.197</version>
         </dependency>
 
-        <!-- TODO -01 Log 관련 설정-->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
