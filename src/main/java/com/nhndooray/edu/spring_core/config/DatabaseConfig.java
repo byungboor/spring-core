@@ -1,23 +1,31 @@
 package com.nhndooray.edu.spring_core.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 
 @Configuration
+// TODO -01
+@PropertySource("classpath:datasource.properties")
 public class DatabaseConfig {
+
+    @Autowired
+    private Environment env;
 
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
 
-        dataSource.setDriverClassName("org.h2.Driver");
-        dataSource.setUrl("jdbc:h2:~/springcore;INIT=RUNSCRIPT FROM 'classpath:/script/schema.sql'");
-        dataSource.setUsername("sa");
-        dataSource.setPassword("");
+        dataSource.setDriverClassName(env.getProperty("datasource.driver-class-name"));
+        dataSource.setUrl(env.getProperty("datasource.url"));
+        dataSource.setUsername(env.getProperty("datasource.username"));
+        dataSource.setPassword(env.getProperty("datasource.password", ""));
 
         dataSource.setInitialSize(10);
         dataSource.setMaxTotal(10);
