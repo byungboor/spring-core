@@ -9,7 +9,9 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
 
-@EnableAspectJAutoProxy
+// TODO : #3 JoinPoint에서 method parameter name을 가져오기 위해서.
+// TODO : #3 `@EnableAspectJAutoProxy(proxyTargetClass = true)` for retrieving the method parameter name from JoinPoint.
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 @Configuration
 @Import(DatabaseConfig.class)
 @ComponentScan(basePackages = "com.nhndooray.edu.spring_core")
